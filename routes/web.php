@@ -41,3 +41,6 @@ Route::get('/news/{id}', [NewsController::class, 'show'])
     ->name('news.show');
 
 
+Route::match(["POST", 'GET', 'PUT'], '/test', function(\Illuminate\Http\Request $request) {
+   return (int) $request->isMethod('GET');
+});
