@@ -11,8 +11,16 @@
         @endforeach
     @endif
 
-    <form method="post" action="{{ route('admin.news.store', ['query' => 'test']) }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('admin.news.store') }}" enctype="multipart/form-data">
         @csrf
+        <div class="form-group">
+            <label for="categories">Категории</label>
+            <select class="form-control" multiple name="categories[]" id="categories">
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->title }}</option>
+                @endforeach
+            </select>
+        </div>
         <div class="form-group">
             <label for="title">Заголовок</label>
             <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}"/>

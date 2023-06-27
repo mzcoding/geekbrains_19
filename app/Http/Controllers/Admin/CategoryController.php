@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Queries\CategoriesQueryBuilder;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -12,9 +13,11 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(CategoriesQueryBuilder $categoriesQueryBuilder)
     {
-        return view('admin.categories.index');
+        return view('admin.categories.index', [
+            'categoryList' => $categoriesQueryBuilder->getAll(),
+        ]);
     }
 
     /**
