@@ -17,13 +17,15 @@
             <label for="categories">Категории</label>
             <select class="form-control" multiple name="categories[]" id="categories">
                 @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->title }}</option>
+                    <option @if(in_array($category->id, old('categories') ?? [])) selected @endif value="{{ $category->id }}">{{ $category->title }}</option>
                 @endforeach
             </select>
+            @error('categories') <x-alert type="danger" :message="$message"></x-alert>  @enderror
         </div>
         <div class="form-group">
             <label for="title">Заголовок</label>
             <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}"/>
+            @error('title') <x-alert type="danger" :message="$message"></x-alert>  @enderror
         </div>
         <div class="form-group">
             <label for="author">Автор</label>
@@ -36,9 +38,9 @@
         <div class="form-group">
             <label for="status">Статус</label>
             <select class="form-control" name="status" id="status">
-                <option @if(old('status') === 'DRAFT') selected @endif>DRAFT</option>
-                <option @if(old('status') === 'ACTIVE') selected @endif>ACTIVE</option>
-                <option @if(old('status') === 'BLOCKED') selected @endif>BLOCKED</option>
+                <option @if(old('status') === 'draft') selected @endif value="{{ \App\Enums\NewsStatus::DRAFT->value }}">DRAFT</option>
+                <option @if(old('status') === 'active') selected @endif value="{{ \App\Enums\NewsStatus::ACTIVE->value }}">ACTIVE</option>
+                <option @if(old('status') === 'blocked') selected @endif value="{{ \App\Enums\NewsStatus::BLOCKED->value }}">BLOCKED</option>
             </select>
         </div>
 
