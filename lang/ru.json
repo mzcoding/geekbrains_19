@@ -2,5 +2,14 @@
     "News has been updated": "Новость была успешно обновлена",
     "News has not been updated": "Не удалось обновить новость",
     "News has been create": "Запись была добавлена",
-    "News has not been create": "Не удалось добавить запись"
+    "News has not been create": "Не удалось добавить запись",
+    "Register": "Регистрация",
+    "Name": "Имя",
+    "Email Address": "Email адрес",
+    "Password": "Пароль",
+    "Confirm Password": "Повторите пароль",
+    "Login": "Вход",
+    "Remember Me": "Запомнить меня",
+    "Forgot Your Password?": "Забыли пароль?",
+    "Account": "Панель управления"
 }
