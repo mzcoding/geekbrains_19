@@ -30,7 +30,7 @@ class Update extends FormRequest
             'categories.*' => ['exists:categories,id'],
             'title' => ['required', 'string', 'min:7', 'max:200'],
             'author' => ['nullable', 'string', 'min:2', 'max:50'],
-            'image' => ['sometimes'],
+            'image' => ['sometimes', 'image', 'mimes:jpg,bmp,png'],
             'status' => ['required', new Enum(NewsStatus::class)],
             'description' => ['nullable', 'string', 'max:3000'],
         ];

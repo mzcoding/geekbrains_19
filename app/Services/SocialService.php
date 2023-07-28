@@ -7,6 +7,7 @@ namespace App\Services;
 use App\Models\User;
 use App\Services\Contracts\Social;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Contracts\User as SocialUser;
 
 class SocialService implements Social

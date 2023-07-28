@@ -11,6 +11,8 @@ use App\Models\News;
 use App\Queries\CategoriesQueryBuilder;
 use App\Queries\NewsQueryBuilder;
 use App\Queries\QueryBuilder;
+use App\Services\Contracts\Upload;
+use App\Services\UploadService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -85,9 +87,14 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Update $request, News $news): RedirectResponse
+    public function update(Update $request, News $news, Upload $upload): RedirectResponse
     {
         $news = $news->fill($request->validated());
+
+        if ($request->hasFile('image')) {
+           $news['image'] = $upload->create($request->file('image'));
+        }
+
         if ($news->save()) {
             $news->categories()->sync($request->getCategories());
 
